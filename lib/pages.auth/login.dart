@@ -1,7 +1,18 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:form_field_validator/form_field_validator.dart';
-
+import 'package:http/http.dart';
 import 'package:simple_animations/simple_animations.dart';
+
+
+import 'dart:convert';
+
+import 'package:flutter/material.dart';
+import 'package:form_field_validator/form_field_validator.dart';
+import 'package:http/http.dart';
+import 'package:simple_animations/simple_animations.dart';
+
 
 
 class Login extends StatefulWidget {
@@ -16,22 +27,67 @@ class _LoginState extends State<Login> {
   bool _isLoading = false;
   GlobalKey<FormState> fromKey = GlobalKey<FormState>();
 
+
+
+
+
+  List post = [];
+
+  Future<void> getpost() async {
+    var url = "https://jsonplaceholder.typicode.com/posts";
+    var response = await get(Uri.parse(url));
+    var responsebody = jsonDecode(response.body);
+    setState(() {
+      post.addAll(responsebody);
+    });
+    print(post);
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Colors.white,
         body: SafeArea(
+
+
           child: Form(
+
+
             key: fromKey,
             child: Container(
+
+
+
+
               padding: EdgeInsets.only(left: 20, right: 20),
               child: Column(
+
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
+
+
+
+
+
+
+
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: <Widget>[
+
                       SizedBox(height: 40),
                       Image.asset(
                         'assets/images/ramadan.png',
@@ -48,6 +104,7 @@ class _LoginState extends State<Login> {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
+
                       Text("Sign in", style: TextStyle(color: Colors.black,
                           fontWeight: FontWeight.w600,
                           fontSize: 40)),
@@ -148,6 +205,9 @@ class _LoginState extends State<Login> {
                             )
                         ),
 
+
+
+
                         validator: MultiValidator([
                           RequiredValidator(errorText: "* Required"),
                           MinLengthValidator(6, errorText: "Password min 6 char. required"),
@@ -165,6 +225,8 @@ class _LoginState extends State<Login> {
                       ),
                       SizedBox(height: 20),
                       Container(
+
+
                         alignment: Alignment.topCenter,
                         height: 60,
                         width: 250,
@@ -188,8 +250,22 @@ class _LoginState extends State<Login> {
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Opacity(opacity: 0,
-                                    child: Icon(Icons.arrow_forward)),
+
+                                post== null || post.isEmpty  ?
+                                Center(child: CircularProgressIndicator())
+
+
+                                    : ListView.builder(itemCount: post.length,
+
+                                    itemBuilder: (context,i){
+
+                                      return Text("${post[i]['title']}");
+
+
+                                    })
+
+
+                                ,
                                 Text("Login", style: TextStyle(
                                     color: Colors.white, fontSize: 20)),
                                 Container(
@@ -219,6 +295,7 @@ class _LoginState extends State<Login> {
                                           });
                                         } else {
                                           print("not valid");
+                                          getpost();
                                         }
                                       },
                                     ),

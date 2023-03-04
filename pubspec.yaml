@@ -37,6 +37,10 @@ dependencies:
   cupertino_icons: ^1.0.2
   form_field_validator: ^1.1.0
   simple_animations: ^5.0.0+3
+<<<<<<< HEAD
+=======
+  http: ^0.13.5
+>>>>>>> b1332f0 (Initial commit)
 
 dev_dependencies:
   flutter_test:
