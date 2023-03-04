@@ -1,48 +1,24 @@
 import 'dart:convert';
-
-
-
-// WELCOM TO PROJECT 🖤🖤🖤🖤
-
-
-
-
-
-
-
 import 'package:flutter/material.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:http/http.dart';
 import 'package:simple_animations/simple_animations.dart';
-
-
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:http/http.dart';
 import 'package:simple_animations/simple_animations.dart';
-
-
-
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
-
   @override
   State<Login> createState() => _LoginState();
 }
-
 class _LoginState extends State<Login> {
   bool _isObscure = true;
   bool _isLoading = false;
   GlobalKey<FormState> fromKey = GlobalKey<FormState>();
 
-
-
-
-
   List post = [];
-
   Future<void> getpost() async {
     var url = "https://jsonplaceholder.typicode.com/posts";
     var response = await get(Uri.parse(url));
@@ -52,19 +28,6 @@ class _LoginState extends State<Login> {
     });
     print(post);
   }
-
-
-
-
-
-
-
-
-
-
-
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -87,12 +50,6 @@ class _LoginState extends State<Login> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
-
-
-
-
-
-
 
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -214,10 +171,6 @@ class _LoginState extends State<Login> {
                                 )
                             )
                         ),
-
-
-
-
                         validator: MultiValidator([
                           RequiredValidator(errorText: "* Required"),
                           MinLengthValidator(6, errorText: "Password min 6 char. required"),
