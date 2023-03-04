@@ -37,13 +37,8 @@ class _LoginState extends State<Login> {
 
 
           child: Form(
-
-
             key: fromKey,
             child: Container(
-
-
-
 
               padding: EdgeInsets.only(left: 20, right: 20),
               child: Column(
@@ -283,7 +278,7 @@ class _LoginState extends State<Login> {
                           onTap: () {
 
                           },
-                          child: Text("DevhubSpot", style: TextStyle(
+                          child: Text("Creativa💛", style: TextStyle(
                               color: Colors.pinkAccent,
                               fontWeight: FontWeight.bold)),
                         )
